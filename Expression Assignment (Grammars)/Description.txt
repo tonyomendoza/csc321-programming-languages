@@ -1,0 +1,24 @@
+The project is a parser. It recieves mathematical input from the console and outputs results. When finished, press ".", otherwise end statements with a semi-colon ';'
+
+The code was modified to allow this grammer:
+
+        statement = { expression  ";" } "."
+
+        expression = term { ( "+" | "-" ) term }
+
+        term      = factor { ( "*" | "/" ) factor }
+
+        factor    = primary ^ primary | primary
+
+        primary   = number | "(" expression ")"
+
+Specifically, exponentations are supported. To do this, I renamed the old "factor" to "primary" and created a new "factor" object based off the "term" object.
+
+Examples of the possible input statements and their outputs.
+	1+1; // => 2
+	1-1; // => 0
+	2*2; // => 4
+	2/2; // => 1
+	3^3; // => 27
+	(2*(1+1))^3; // 64
+	. // done
